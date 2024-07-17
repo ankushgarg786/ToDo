@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
+const { MONGO_DB_URL } = require("./config");
+mongoose.connect(MONGO_DB_URL);
 
-mongoose.connect(
-  "mongodb+srv://admin:admin%40123@cluster0.nuhnpst.mongodb.net/"
-);
 const todoSchema = new mongoose.Schema({
   title: String,
   description: String,
