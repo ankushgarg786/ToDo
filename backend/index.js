@@ -2,8 +2,9 @@ const express = require("express");
 const { createTodo, updateTodo } = require("./type");
 const app = express();
 const { todo } = require("./db");
-
-app.use(express().json());
+const cors = require("cors");
+app.use(express.json());
+app.use(cors());
 
 app.post("/todo", async (req, res) => {
   const createPayload = req.body;
@@ -24,7 +25,7 @@ app.post("/todo", async (req, res) => {
   });
 });
 //
-app.get("/todods", async (res, res) => {
+app.get("/todos", async (req, res) => {
   const todos = await todo.find({});
   res.json({
     todos: todos,
@@ -52,3 +53,5 @@ app.put("/completed", async (req, res) => {
     msg: "Todo marked as completed",
   });
 });
+
+app.listen(3000);
